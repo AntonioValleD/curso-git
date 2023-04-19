@@ -53,4 +53,4 @@ getBlogContent();
 
 const loadAds = () => {
   console.log('Ads loaded');
-}
+};
