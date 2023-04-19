@@ -7,20 +7,20 @@ body{
     text-align: center;
     color: #FAFAFA;
 }
-.container{
+.sl-container{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.container img{
+.sl-container img{
     margin-top: 50px;
     width: 500px;
 }
-.container h1{
+.sl-container h1{
     color: #FAFAFA;
     font-size: 100px;
 }
-.content{
+.container{
     margin-top: 30px;
     padding: 0px 60px;
 }
