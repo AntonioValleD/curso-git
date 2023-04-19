@@ -1,32 +1,32 @@
 const url = "https://jsonplaceholder.typicode.com";
 
 const getUser = async (id) => {
-    const res = await fetch(`${url}/users?id=${id}`);
-    const user = (await res.json())[0];
-    console.log(user);
-    return user;
+  const res = await fetch(`${url}/users?id=${id}`);
+  const user = (await res.json())[0];
+  console.log(user);
+  return user;
 };
 
 const getPosts = async (user) => {
-    const res = await fetch(`${url}/posts?userId=${user.id}&_limit=5`);
-    const posts = await res.json();
-    return posts;
+  const res = await fetch(`${url}/posts?userId=${user.id}&_limit=5`);
+  const posts = await res.json();
+  return posts;
 };
 
 const getCommentsForEachPost = async (posts) => {
-    const res = await Promise.all(posts.map(post =>
-        fetch(`${url}/comments?postId=${post.id}&_limit=2`)
-    ));
-    const postComments = await Promise.all(res.map(r => r.json()));
-    postComments.forEach((comments, i) => posts[i].comments = comments);
+  const res = await Promise.all(posts.map(post =>
+    fetch(`${url}/comments?postId=${post.id}&_limit=2`)
+  ));
+  const postComments = await Promise.all(res.map(r => r.json()));
+  postComments.forEach((comments, i) => posts[i].comments = comments);
 };
 
 const renderHtml = (user, posts) => {
-    const content = document.getElementById('content');
-    content.innerHTML += `<h3>Posts del usuario ${user.email}</h3>`;
-    
-    posts.forEach(post => {
-      content.innerHTML += `
+  const content = document.getElementById('content');
+  content.innerHTML += `<h3>Posts del usuario ${user.email}</h3>`;
+
+  posts.forEach(post => {
+    content.innerHTML += `
       <div class="post">
         <h4>${post.title}</h4>
         <p>${post.body}</p>
@@ -34,7 +34,7 @@ const renderHtml = (user, posts) => {
         ${post.comments.map(c => `<p><span>${c.email}:</span>${c.body}</p>`).join('')}
       </div>
       `;
-    })
+  })
 };
 
 const getBlogContent = async () => {
@@ -50,3 +50,7 @@ const getBlogContent = async () => {
 };
 
 getBlogContent();
+
+const loadAds = () => {
+  console.log('Ads loaded');
+}
